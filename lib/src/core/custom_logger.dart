@@ -22,6 +22,6 @@ mixin CustomLogger {
   }
 
   void _log(String message, {required String operation, required Level level}) {
-    _logger.log(level, '$operation - $message');
+    _logger.log(level, '$level [${runtimeType.toString()}] $operation - $message');
   }
 }
