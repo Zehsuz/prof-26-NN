@@ -5,16 +5,19 @@ import 'package:logging/logging.dart';
 ///создал Захар
 mixin CustomLogger {
   late Logger _logger = Logger('[${runtimeType.toString()}]');
+
   //функция логирования уровня инфо принимает операцию и сообщение
-  void logInfo({required String operation, required String message}){
+  void logInfo({required String operation, required String message}) {
     _log(message, operation: operation, level: .INFO);
   }
+
   //функция логирования уровня дебаг принимает операцию и сообщение
-  void logDebug({required String operation, required String message}){
+  void logDebug({required String operation, required String message}) {
     _log(message, operation: operation, level: .FINE);
   }
+
   //функция логирования уровня эррор принимает операцию и сообщение
-  void logError({required String operation, required String message}){
+  void logError({required String operation, required String message}) {
     _log(message, operation: operation, level: .SEVERE);
   }
 

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:logger_helper/logger_helper.dart';
 
+///назначение: mixin отвечает за автоматическое логирование жизненного цикла виджета
+///дата создания: 22-04-26
+///создал Захар
 mixin LoggableWidgetState<T extends StatefulWidget> on State<T>
     implements CustomLogger {
   @override
