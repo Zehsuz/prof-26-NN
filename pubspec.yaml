@@ -15,7 +15,7 @@ dependencies:
   logger_helper:
     git:
       url: https://gitea.intelligent-system.ru/train2026/Prof_26_Zahar.git
-      ref: 04-05-26/1/logger
+      ref: 05-05-26/1/logger
   mocktail: ^1.0.5
 publish_to: none
 
