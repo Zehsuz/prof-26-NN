@@ -1,6 +1,8 @@
 import 'package:application/domain/models/user.dart';
 import 'package:application/domain/use_cases/auth_use_case.dart';
+import 'package:application/domain/use_cases/get_profile_use_case.dart';
 import 'package:flutter/material.dart';
+import 'package:logger_helper/logger_helper.dart';
 
 /// Назначение: определения состояний экрана AuthPage
 /// Дата создания: 25.05.2026
@@ -44,13 +46,15 @@ class AuthPageFailure extends AuthPageState {
 /// Назначение: методы экрана AuthPage
 /// Дата создания: 25.05.2026
 /// Создал: Захар
-class AuthNotifier extends ValueNotifier<AuthPageState> {
+class AuthNotifier extends ValueNotifier<AuthPageState> with CustomLogger {
   final AuthUseCase _authUseCase;
-
-  AuthNotifier({required this._authUseCase})
-    : super(const AuthPageIdle());
+  final GetProfileUseCase _getProfileUseCase;
+  AuthNotifier({required this._authUseCase, required this._getProfileUseCase}) : super(const AuthPageIdle());
 
   /// вызывает сценарий авторизации полльзователя, принимает [identity], [password]
+  ///
+  /// [identity] - email пользователя
+  /// [password] - пароль пользователя
   Future<void> login({
     required String identity,
     required String password,
@@ -64,6 +68,17 @@ class AuthNotifier extends ValueNotifier<AuthPageState> {
       value = AuthPageLoaded(userEntity: user.record);
     } catch (e) {
       value = AuthPageFailure(message: e.toString());
+      logError(operation: 'operation', message: 'message');
+    }
+  }
+
+  Future<String> getProfile({required String id}) async {
+    try{
+      final response = await
+      _getProfileUseCase(id: id);
+      return response.name;
+    }catch(e){
+      return 'Нет авторизации';
     }
   }
 }

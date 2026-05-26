@@ -46,7 +46,6 @@ class SignUpPageFailure extends SignUpPageState {
 /// Дата создания: 25.05.2026
 /// Создал: Захар
 class SignUpNotifier extends ValueNotifier<SignUpPageState> {
-  // TODO: поменять на регистрацию
   final SignUpUseCase _signUpUseCase;
 
   SignUpNotifier({required this._signUpUseCase})

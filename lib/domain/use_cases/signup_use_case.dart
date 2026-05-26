@@ -11,7 +11,18 @@ class SignUpUseCase {
 
   SignUpUseCase({required this._authRepository});
 
-  /// регистрация полльзователя, принимает [email],[password],[passwordConfirm],[name],[firstName],[lastName],[middleName],[phone],[role],[isActive], возвращает [UserEntity]
+  /// регистрация пользователя
+  /// email почта
+  /// password пароль
+  /// passwordConfirm повторение пароля
+  /// name имя пользователя
+  /// firstName имя
+  /// lastName фамилия
+  /// middleName отчество
+  /// phone телефон
+  /// role роль
+  /// isActive активность
+  /// возвращает UserEntity
   Future<UserEntity> call({
     required String email,
     required String password,

@@ -51,4 +51,12 @@ class ApiDataSource {
     );
     return .fromResponse(response);
   }
+
+  /// получение профиля полльзователя, принимает
+  /// [id] - id пользователя,
+  /// возвращает [UserDto]
+  Future<UserDto> getProfile({required String id}) async {
+    final response = await _client.getProfile(id);
+    return .fromResponse(response);
+  }
 }

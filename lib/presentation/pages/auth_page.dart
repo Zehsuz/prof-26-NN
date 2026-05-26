@@ -22,9 +22,23 @@ class AuthPage extends StatefulWidget {
 class _AuthPageState extends State<AuthPage> with LoggableState, CustomLogger {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  String? _active;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _getProfile());
+  }
+
+  Future<void> _getProfile() async {
+    final notifier = context.read<AuthNotifier>();
+    _active = await notifier.getProfile(id: 'ar1l5o78stdov9d');
+    logDebug(operation: 'Active user', message: _active.toString());
+  }
 
   @override
   Widget build(BuildContext context) {
+    logBuild();
     final notifier = context.watch<AuthNotifier>();
     return Scaffold(
       backgroundColor: context.palette.background,
@@ -227,10 +241,10 @@ class _AuthPageState extends State<AuthPage> with LoggableState, CustomLogger {
       identity: _emailController.text,
       password: _passwordController.text,
     );
-    if (notifier.value is AuthPageLoaded) {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => VacanciesMainPage()),
-      );
-    }
+    if (!mounted) return;
+    if (notifier.value is! AuthPageLoaded) return;
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (context) => VacanciesMainPage()),
+    );
   }
 }

@@ -39,9 +39,8 @@ class _SignUpPageState extends State<SignUpPage>
               valueListenable: notifier,
               builder: (context, state, _) {
                 if (state case SignUpPageLoaded(:final userEntity)) {
-                  WidgetsBinding.instance.addPostFrameCallback(
-                    (_) {
-                      showDialog(
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                    showDialog(
                       context: context,
                       builder: (context) => AlertDialog(
                         title: Text('Успешная регистрация'),
@@ -55,14 +54,13 @@ class _SignUpPageState extends State<SignUpPage>
                           ],
                         ),
                       ),
-                    );Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                          builder: (context) => VacanciesMainPage(),
-                        ),
-                      );
-                    },
-                  );
-
+                    );
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => VacanciesMainPage(),
+                      ),
+                    );
+                  });
                 }
                 if (state case SignUpPageFailure(:final message)) {
                   WidgetsBinding.instance.addPostFrameCallback(

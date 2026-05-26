@@ -25,11 +25,22 @@ sealed class DomainExceptions implements Exception {
   }
 }
 
-/// Назначение: бработчик ошибок AUTH в читаемы вид
+/// Назначение: обработчик ошибок AUTH в читаемый вид
 /// Дата создания: 25.05.2026
 /// Создал: Захар
 class AuthDomainException extends DomainExceptions {
   AuthDomainException({
+    required super.message,
+    required super.operation,
+    required super.cause,
+  });
+}
+
+/// Назначение: обработчик ошибок Profile в читаемый вид
+/// Дата создания: 25.05.2026
+/// Создал: Захар
+class ProfileDomainException extends DomainExceptions {
+  ProfileDomainException({
     required super.message,
     required super.operation,
     required super.cause,

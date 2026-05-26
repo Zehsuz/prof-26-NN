@@ -4,7 +4,7 @@ import 'package:ui_kit/ui_kit.dart';
 
 import '../pages/auth_page.dart';
 
-/// Назначение: запуск первого экрана, опредление темы и адаптивки
+/// Назначение: главный виджет приложения
 /// Дата создания: 25.05.2026
 /// Создал: Захар
 class App extends StatelessWidget {
