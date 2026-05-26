@@ -19,10 +19,21 @@ class VacanciesMainPage extends StatefulWidget {
 
 class _VacanciesMainPageState extends State<VacanciesMainPage>
     with LoggableState, CustomLogger {
+  late String _active;
+
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => _reload());
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _reload();
+      _getProfile();
+    });
+  }
+
+  Future<void> _getProfile() async {
+    final notifier = context.read<VacanciesMainPageNotifier>();
+    _active = await notifier.getProfile(id: 'e6wpfxcdgh3m6o4');
+    logDebug(operation: 'Active user', message: _active.toString());
   }
 
   final _searchController = TextEditingController();

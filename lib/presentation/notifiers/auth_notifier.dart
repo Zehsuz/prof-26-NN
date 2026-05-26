@@ -49,7 +49,8 @@ class AuthPageFailure extends AuthPageState {
 class AuthNotifier extends ValueNotifier<AuthPageState> with CustomLogger {
   final AuthUseCase _authUseCase;
   final GetProfileUseCase _getProfileUseCase;
-  AuthNotifier({required this._authUseCase, required this._getProfileUseCase}) : super(const AuthPageIdle());
+  AuthNotifier({required this._authUseCase, required this._getProfileUseCase})
+    : super(const AuthPageIdle());
 
   /// вызывает сценарий авторизации полльзователя, принимает [identity], [password]
   ///
@@ -73,11 +74,10 @@ class AuthNotifier extends ValueNotifier<AuthPageState> with CustomLogger {
   }
 
   Future<String> getProfile({required String id}) async {
-    try{
-      final response = await
-      _getProfileUseCase(id: id);
+    try {
+      final response = await _getProfileUseCase(id: id);
       return response.name;
-    }catch(e){
+    } catch (e) {
       return 'Нет авторизации';
     }
   }

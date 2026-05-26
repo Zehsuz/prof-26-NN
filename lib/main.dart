@@ -55,12 +55,14 @@ void main() {
           ),
         ),
         ChangeNotifierProvider<SignUpNotifier>(
-          create: (context) =>
-              SignUpNotifier(signUpUseCase: context.read<SignUpUseCase>()),
+          create: (context) => SignUpNotifier(
+            signUpUseCase: context.read<SignUpUseCase>(),
+            getProfileUseCase: context.read<GetProfileUseCase>(),
+          ),
         ),
         ChangeNotifierProvider<VacanciesMainPageNotifier>(
           create: (context) => VacanciesMainPageNotifier(
-            signUpUseCase: context.read<SignUpUseCase>(),
+            getProfileUseCase: context.read(),
           ),
         ),
       ],

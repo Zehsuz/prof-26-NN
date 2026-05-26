@@ -1,7 +1,6 @@
 import 'package:application/domain/models/user.dart';
+import 'package:application/domain/use_cases/get_profile_use_case.dart';
 import 'package:flutter/material.dart';
-
-import '../../domain/use_cases/signup_use_case.dart';
 
 /// Назначение: определения состояний экрана VacanciesMainPage
 /// Дата создания: 25.05.2026
@@ -46,8 +45,17 @@ class VacanciesMainPageFailure extends VacanciesMainPageState {
 /// Дата создания: 25.05.2026
 /// Создал: Захар
 class VacanciesMainPageNotifier extends ValueNotifier<VacanciesMainPageState> {
-  final SignUpUseCase _signUpUseCase;
+  final GetProfileUseCase _getProfileUseCase;
 
-  VacanciesMainPageNotifier({required this._signUpUseCase})
+  VacanciesMainPageNotifier({required this._getProfileUseCase})
     : super(const VacanciesMainPageIdle());
+
+  Future<String> getProfile({required String id}) async {
+    try {
+      final response = await _getProfileUseCase(id: id);
+      return response.name;
+    } catch (e) {
+      return 'Нет авторизации';
+    }
+  }
 }

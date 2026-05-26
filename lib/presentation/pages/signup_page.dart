@@ -25,6 +25,19 @@ class _SignUpPageState extends State<SignUpPage>
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
   final _passwordConfirmController = TextEditingController();
+  late String _active;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _getProfile());
+  }
+
+  Future<void> _getProfile() async {
+    final notifier = context.read<SignUpNotifier>();
+    _active = await notifier.getProfile(id: 'e6wpfxcdgh3m6o4');
+    logDebug(operation: 'Active user', message: _active.toString());
+  }
 
   @override
   Widget build(BuildContext context) {

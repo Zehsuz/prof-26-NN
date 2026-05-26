@@ -22,7 +22,7 @@ class AuthPage extends StatefulWidget {
 class _AuthPageState extends State<AuthPage> with LoggableState, CustomLogger {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  String? _active;
+  late String _active;
 
   @override
   void initState() {
@@ -32,7 +32,7 @@ class _AuthPageState extends State<AuthPage> with LoggableState, CustomLogger {
 
   Future<void> _getProfile() async {
     final notifier = context.read<AuthNotifier>();
-    _active = await notifier.getProfile(id: 'ar1l5o78stdov9d');
+    _active = await notifier.getProfile(id: 'e6wpfxcdgh3m6o4');
     logDebug(operation: 'Active user', message: _active.toString());
   }
 
@@ -243,8 +243,5 @@ class _AuthPageState extends State<AuthPage> with LoggableState, CustomLogger {
     );
     if (!mounted) return;
     if (notifier.value is! AuthPageLoaded) return;
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (context) => VacanciesMainPage()),
-    );
   }
 }

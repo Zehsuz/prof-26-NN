@@ -1,6 +1,7 @@
 import 'package:application/domain/models/user.dart';
 import 'package:flutter/material.dart';
 
+import '../../domain/use_cases/get_profile_use_case.dart';
 import '../../domain/use_cases/signup_use_case.dart';
 
 /// Назначение: определения состояний экрана SignUpPage
@@ -47,9 +48,12 @@ class SignUpPageFailure extends SignUpPageState {
 /// Создал: Захар
 class SignUpNotifier extends ValueNotifier<SignUpPageState> {
   final SignUpUseCase _signUpUseCase;
+  final GetProfileUseCase _getProfileUseCase;
 
-  SignUpNotifier({required this._signUpUseCase})
-    : super(const SignUpPageIdle());
+  SignUpNotifier({
+    required this._signUpUseCase,
+    required this._getProfileUseCase,
+  }) : super(const SignUpPageIdle());
 
   /// регистрация полльзователя, принимает [email],[password],[passwordConfirm],[name],[firstName],[lastName],[middleName],[phone],[role],[isActive], возвращает [UserEntity]
   Future<void> signup({
@@ -81,6 +85,15 @@ class SignUpNotifier extends ValueNotifier<SignUpPageState> {
       value = SignUpPageLoaded(userEntity: user);
     } catch (e) {
       value = SignUpPageFailure(message: e.toString());
+    }
+  }
+
+  Future<String> getProfile({required String id}) async {
+    try {
+      final response = await _getProfileUseCase(id: id);
+      return response.name;
+    } catch (e) {
+      return 'Нет авторизации';
     }
   }
 }
