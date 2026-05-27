@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 /// Назначение: работа с токеном авторизации
-/// Дата создания: 26.05.2026
+/// Дата создания: 27.05.2026
 /// Создал: Захар
 class AuthInterceptor extends Interceptor {
   String? _token;

@@ -3,7 +3,7 @@ import 'package:net_service/net_service.dart';
 import 'package:retrofit/call_adapter.dart';
 
 /// Назначение: выбрасывает ошибку в читаемом виде
-/// Дата создания: 26.05.2026
+/// Дата создания: 27.05.2026
 /// Создал: Захар
 class ErrorAdapter<T> extends CallAdapter<Future<T>, Future<T>> {
   @override

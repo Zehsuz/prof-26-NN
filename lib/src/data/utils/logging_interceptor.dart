@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:logger_helper/logger_helper.dart';
 
 /// Назначение: автоматическое логирование запросов
-/// Дата создания: 26.05.2026
+/// Дата создания: 27.05.2026
 /// Создал: Захар
 class LoggingInterceptor extends Interceptor with CustomLogger {
   @override

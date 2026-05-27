@@ -1,5 +1,5 @@
 /// Назначение: обработчик ошибки NetLib
-/// Дата создания: 26.05.2026
+/// Дата создания: 27.05.2026
 /// Создал: Захар
 class NetLibException implements Exception {
   final String operation;

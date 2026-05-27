@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'user.g.dart';
 
 /// Назначение: модель ответа от сервера
-/// Дата создания: 26.05.2026
+/// Дата создания: 27.05.2026
 /// Создал: Захар
 @JsonSerializable()
 class UserResponse {
@@ -34,7 +34,7 @@ class UserResponse {
 }
 
 /// Назначение: модель авторизованного пользователя
-/// Дата создания: 26.05.2026
+/// Дата создания: 27.05.2026
 /// Создал: Захар
 @JsonSerializable()
 class AuthResponse {
@@ -53,7 +53,7 @@ class AuthResponse {
 }
 
 /// Назначение: модель авторизации пользователя
-/// Дата создания: 26.05.2026
+/// Дата создания: 27.05.2026
 /// Создал: Захар
 @JsonSerializable()
 class AuthRequest {

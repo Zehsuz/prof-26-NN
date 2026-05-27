@@ -6,7 +6,7 @@ import '../../../net_service.dart';
 part 'net_http_client.g.dart';
 
 /// Назначение: описания запросов
-/// Дата создания: 26.05.2026
+/// Дата создания: 27.05.2026
 /// Создал: Захар
 @RestApi(callAdapter: ErrorAdapter)
 abstract class NetHttpClient implements AuthHttpClient {
