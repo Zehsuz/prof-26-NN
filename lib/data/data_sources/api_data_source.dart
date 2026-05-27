@@ -6,11 +6,14 @@ import '../models/user_dto.dart';
 /// Дата создания: 27.05.2026
 /// Создал: Захар
 class ApiDataSource {
-  final AuthInterceptor interceptor;
+  final AuthInterceptor _interceptor;
   final NetHttpClient _client;
 
-  ApiDataSource({required this.interceptor, required NetHttpClient client})
-    : _client = client;
+  ApiDataSource({
+    required AuthInterceptor interceptor,
+    required NetHttpClient client,
+  }) : _interceptor = interceptor,
+       _client = client;
 
   /// авторизация
   /// [identity] - почта пользователя,
@@ -23,6 +26,8 @@ class ApiDataSource {
     final response = await _client.login(
       .new(identity: identity, password: password),
     );
+    _interceptor.setToken(response.token);
+
     return .fromJson(response);
   }
 }
