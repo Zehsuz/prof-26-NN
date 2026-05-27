@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ui_kit/ui_kit_26_05_26.dart';
 import 'package:widgetbook/widgetbook.dart';
 
+import '../components/styles.dart';
+
 class App extends StatelessWidget {
   const App({super.key});
 
@@ -22,11 +24,11 @@ class App extends StatelessWidget {
             ),
           ],
         ),
-        AlignmentAddon()
+        AlignmentAddon(),
       ],
       appBuilder: (context, child) =>
           ScreenUtilInit(designSize: .new(390, 884), child: child),
-      directories: [PaletteUseCase()],
+      directories: [PaletteUseCase(), StylesUseCase()],
     );
   }
 }
