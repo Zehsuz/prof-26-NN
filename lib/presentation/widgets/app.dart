@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ui_kit/ui_kit_26_05_26.dart';
 
-/// Назначение: запуск первого экрана
+/// Назначение: запуск приложения
 /// Дата создания: 26.05.2026
 /// Создал: Захар
 class App extends StatelessWidget {

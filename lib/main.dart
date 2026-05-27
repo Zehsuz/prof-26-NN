@@ -12,7 +12,9 @@ import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 import 'package:net_service/net_service.dart';
 import 'package:provider/provider.dart';
-
+/// Назначение: точка входа в приложение
+/// Дата создания: 27.05.2026
+/// Создал: Захар
 void main() {
   Logger.root.level = .ALL;
   Logger.root.onRecord.listen((log) => print(log.message));

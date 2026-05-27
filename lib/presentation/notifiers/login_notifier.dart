@@ -1,6 +1,7 @@
 import 'package:application/domain/models/user_dto.dart';
 import 'package:application/domain/use_cases/login_use_case.dart';
 import 'package:flutter/material.dart';
+import 'package:logger_helper/logger_helper.dart';
 
 /// Назначение: определяет состояния LoginPage
 /// Дата создания: 27.05.2026
@@ -44,7 +45,7 @@ class LoginPageLoaded extends LoginPageState {
 /// Назначение: методы экрана Login
 /// Дата создания: 27.05.2026
 /// Создал: Захар
-class LoginNotifier extends ValueNotifier<LoginPageState> {
+class LoginNotifier extends ValueNotifier<LoginPageState> with CustomLogger {
   final LoginUseCase _loginUseCase;
 
   LoginNotifier({required LoginUseCase loginUseCase})
@@ -57,12 +58,17 @@ class LoginNotifier extends ValueNotifier<LoginPageState> {
   }) async {
     try {
       value = LoginPageLoading();
+      logInfo(
+        operation: 'login',
+        message: 'Начало выполнения запроса login для $identity',
+      );
       final user = await _loginUseCase.call(
         identity: identity,
         password: password,
       );
       value = LoginPageLoaded(user: user);
     } catch (e) {
+      logError(operation: 'login()', message: e.toString());
       value = LoginPageFailure(message: e.toString());
     }
   }

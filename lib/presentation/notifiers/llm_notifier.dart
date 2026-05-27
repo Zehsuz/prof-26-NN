@@ -1,6 +1,7 @@
 import 'package:application/domain/services/llama_chat_service.dart';
 import 'package:application/domain/use_cases/llama_chat_use_case.dart';
 import 'package:flutter/material.dart';
+import 'package:logger_helper/logger_helper.dart';
 
 /// Назначение: определяет состояния LlmPage
 /// Дата создания: 27.05.2026
@@ -44,7 +45,7 @@ class LlmPageLoaded extends LlmPageState {
 /// Назначение: методы экрана Llm
 /// Дата создания: 27.05.2026
 /// Создал: Захар
-class LlmNotifier extends ValueNotifier<LlmPageState> {
+class LlmNotifier extends ValueNotifier<LlmPageState> with CustomLogger {
   final LlamaChatUseCase _llmChatUseCase;
   final LlamaChatService _llamaChatService;
 
@@ -62,6 +63,7 @@ class LlmNotifier extends ValueNotifier<LlmPageState> {
       final message = _llmChatUseCase.history;
       value = LlmPageLoaded(message: message);
     } catch (e) {
+      logError(operation: 'getHistory()', message: e.toString());
       value = LlmPageFailure(message: e.toString());
     }
   }
@@ -73,6 +75,7 @@ class LlmNotifier extends ValueNotifier<LlmPageState> {
       await _llamaChatService.reply(text);
       value = LlmPageLoaded(message: _llmChatUseCase.history);
     } catch (e) {
+      logError(operation: 'reply()', message: e.toString());
       value = LlmPageFailure(message: e.toString());
     }
   }

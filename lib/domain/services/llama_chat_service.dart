@@ -1,13 +1,14 @@
 import 'dart:io';
 
 import 'package:flutter/services.dart';
+import 'package:logger_helper/logger_helper.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:llamadart/llamadart.dart';
 
 /// Назначение: сервис общения с LLM моделью
 /// Дата создания: 27.05.2026
 /// Создал: Захар
-class LlamaChatService {
+class LlamaChatService with CustomLogger {
   final _engine = LlamaEngine(LlamaBackend());
   ChatSession? _chatSession;
   static const _contextSize = 2048;
@@ -41,10 +42,6 @@ class LlamaChatService {
     );
 
     _chatSession = ChatSession(_engine);
-
-    // _chatSession?.addMessage(
-    //   .fromText(role: .assistant, text: 'Привет я локальный llm агент'),
-    // );
   }
 
   /// отправка сообщения llm, [text] - сообщение
@@ -53,7 +50,10 @@ class LlamaChatService {
     await for (final message in _chatSession!.create([
       LlamaTextContent(text),
     ])) {
-      print(message);
+      logDebug(
+        operation: 'generated response llm',
+        message: message.toString(),
+      );
     }
   }
 }

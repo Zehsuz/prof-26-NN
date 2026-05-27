@@ -51,6 +51,10 @@ class _LlmPageState extends State<LlmPage> with LoggableState, CustomLogger {
                   CircularProgressIndicator(color: Colors.red),
                 CustomButton(
                   onPressed: () async {
+                    logInfo(
+                      operation: 'onPressed',
+                      message: 'Нажата кнопка отправки сообщения llm агенту',
+                    );
                     await _reply();
                   },
                   text: 'send',

@@ -1,11 +1,13 @@
 import 'package:application/domain/exceptions/exception.dart';
 import 'package:application/domain/repositories/auth_repository.dart';
+import 'package:logger_helper/logger_helper.dart';
 
 import '../models/user_dto.dart';
+
 /// Назначение: сценарий авторизации
 /// Дата создания: 27.05.2026
 /// Создал: Захар
-class LoginUseCase {
+class LoginUseCase with CustomLogger {
   final AuthRepository _authRepository;
 
   LoginUseCase({required AuthRepository authRepository})
@@ -23,6 +25,7 @@ class LoginUseCase {
       );
       return response;
     } on Exception catch (e) {
+      logError(operation: 'login', message: e.toString());
       throw AuthDomainExceptions(
         operation: 'request',
         message: 'login()',

@@ -121,7 +121,8 @@ class _LoginPageState extends State<LoginPage>
                           onPressed: () async {
                             logInfo(
                               operation: 'onPressed',
-                              message: 'Кнопка войти нажата!',
+                              message:
+                                  'Нажата кнопка Войти, выполняется авторизация',
                             );
                             await _login();
                           },
