@@ -16,13 +16,13 @@ void main() {
     interceptor = AuthInterceptor();
     _client = NetHttpClient(
       Dio()..interceptors.addAll([interceptor, LoggingInterceptor()]),
-      baseUrl: 'http://127.0.0.1:8090/api/collections',
+      baseUrl: 'http://109.248.226.223:8080/api/collections',
     );
   });
 
   test('login', () async {
     final response = await _client.login(
-      .new(identity: 'qwe@qwe.qwe', password: password),
+      .new(identity: 'qwe@qwe.qwe', password: 'qweqweqwe'),
     );
     expect(response, isA<AuthResponse>());
   });
