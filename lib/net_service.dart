@@ -1,1 +1,1 @@
-export '';
+export 'src/data/exceptions/exception.dart';
