@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ui_kit_26_05_26/src/presentation/theme/palette.dart';
+import 'package:ui_kit/src/presentation/theme/palette.dart';
 
 /// Назначение: определение темы приложения
 /// Дата создания: 27.05.2026
