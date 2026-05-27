@@ -19,7 +19,7 @@ void main() {
   final AuthInterceptor interceptor = AuthInterceptor();
   final NetHttpClient client = NetHttpClient(
     Dio()..interceptors.addAll([interceptor, LoggingInterceptor()]),
-    baseUrl: 'http://10.0.2.2:8090/api/collections',
+    baseUrl: 'http://109.248.226.223:8080/api/collections',
   );
   final ApiDataSource apiDataSource = ApiDataSource(
     interceptor: interceptor,
