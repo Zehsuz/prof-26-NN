@@ -4,6 +4,6 @@ import 'package:logging/logging.dart';
 
 void main() {
   Logger.root.level = .ALL;
-  Logger.root.onRecord.listen((log) => print(log));
+  Logger.root.onRecord.listen((log) => print(log.message));
   runApp(App());
 }
