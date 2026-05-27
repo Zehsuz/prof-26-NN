@@ -11,7 +11,10 @@ abstract class Palette {
   abstract final Color white;
   abstract final Color black;
   abstract final Color darkenWhite;
+  abstract final Color grey;
+  abstract final Color hint;
 }
+
 /// Назначение: цвета светлой темы
 /// Дата создания: 27.05.2026
 /// Создал: 15
@@ -36,4 +39,10 @@ class LightPalette extends Palette {
 
   @override
   Color get darkenWhite => .fromRGBO(250, 248, 255, 1);
+
+  @override
+  Color get grey => .fromRGBO(195, 198, 215, 1);
+
+  @override
+  Color get hint => .fromRGBO(107, 114, 128, 1);
 }
