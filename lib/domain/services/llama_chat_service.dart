@@ -23,7 +23,7 @@ class LlamaChatService {
     final docDirectory = await getApplicationDocumentsDirectory();
     final localModelFile = File('${docDirectory.path}/model.gguf');
 
-    if (localModelFile.existsSync()) {
+    if (!localModelFile.existsSync()) {
       final assetData = await rootBundle.load(
         'assets/models/gemma-3-270m-it-qat-Q4_0.gguf',
       );
@@ -42,9 +42,9 @@ class LlamaChatService {
 
     _chatSession = ChatSession(_engine);
 
-    _chatSession?.addMessage(
-      .fromText(role: .assistant, text: 'Привет я локальный llm агент'),
-    );
+    // _chatSession?.addMessage(
+    //   .fromText(role: .assistant, text: 'Привет я локальный llm агент'),
+    // );
   }
 
   /// отправка сообщения llm, [text] - сообщение
