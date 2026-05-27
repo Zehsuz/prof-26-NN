@@ -1,4 +1,4 @@
-import '../models/user_entity.dart';
+import '../models/user_dto.dart';
 
 /// Назначение: определяет методы авторизации
 /// Дата создания: 27.05.2026

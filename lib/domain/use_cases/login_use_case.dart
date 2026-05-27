@@ -1,7 +1,7 @@
 import 'package:application/domain/exceptions/exception.dart';
 import 'package:application/domain/repositories/auth_repository.dart';
 
-import '../models/user_entity.dart';
+import '../models/user_dto.dart';
 /// Назначение: сценарий авторизации
 /// Дата создания: 27.05.2026
 /// Создал: Захар
