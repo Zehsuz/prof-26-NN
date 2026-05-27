@@ -1,3 +1,4 @@
+import 'package:example/presentation/components/custom_button.dart';
 import 'package:example/presentation/components/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -28,7 +29,7 @@ class App extends StatelessWidget {
       ],
       appBuilder: (context, child) =>
           ScreenUtilInit(designSize: .new(390, 884), child: child),
-      directories: [PaletteUseCase(), StylesUseCase()],
+      directories: [PaletteUseCase(), StylesUseCase(), CustomButtonUseCase()],
     );
   }
 }

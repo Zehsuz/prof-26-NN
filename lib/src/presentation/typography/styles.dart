@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ui_kit/src/presentation/theme/palette.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+/// Назначение: определение стилей
+/// Дата создания: 26.05.2026
+/// Создал: Захар
 class Styles {
   final Palette palette;
 
