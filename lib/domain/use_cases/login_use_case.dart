@@ -12,7 +12,7 @@ class LoginUseCase {
     : _authRepository = authRepository;
 
   /// авторизация [AuthRequest] - модель авторизации, возвращает [AuthEntity]
-  Future<AuthEntity> login({
+  Future<AuthEntity> call({
     required String identity,
     required String password,
   }) async {
