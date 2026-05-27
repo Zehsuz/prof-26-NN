@@ -10,8 +10,6 @@ extension UserMapper on UserDto {
   UserEntity toEntity() {
     return UserEntity(
       name: name,
-      firstName: firstName,
-      lastName: lastName,
       email: email,
       created: created,
       updated: updated,

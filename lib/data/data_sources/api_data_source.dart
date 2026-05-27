@@ -6,7 +6,7 @@ import '../models/user_dto.dart';
 /// Назначение: вызывает запросы из библиотеки
 /// Дата создания: 27.05.2026
 /// Создал: Захар
-class ApiDataSource with CustomLogger{
+class ApiDataSource with CustomLogger {
   final AuthInterceptor _interceptor;
   final NetHttpClient _client;
 
@@ -29,7 +29,10 @@ class ApiDataSource with CustomLogger{
       .new(identity: identity, password: password),
     );
     _interceptor.setToken(response.token);
-
+    logDebug(
+      operation: 'login',
+      message: 'запрос выполнен успешно, ответ $response',
+    );
     return .fromJson(response);
   }
 }

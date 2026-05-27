@@ -5,16 +5,12 @@ import 'package:net_service/net_service.dart';
 /// Создал: Захар
 class UserDto {
   final String name;
-  final String firstName;
-  final String lastName;
   final String? email;
   final DateTime created;
   final DateTime updated;
 
   UserDto({
     required this.name,
-    required this.firstName,
-    required this.lastName,
     required this.email,
     required this.created,
     required this.updated,
@@ -26,8 +22,6 @@ class UserDto {
   factory UserDto.fromJson(UserResponse response) {
     return UserDto(
       name: response.name,
-      firstName: response.firstName,
-      lastName: response.lastName,
       email: response.email,
       created: response.created,
       updated: response.updated,
