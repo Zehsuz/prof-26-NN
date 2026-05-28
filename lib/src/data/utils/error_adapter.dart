@@ -12,13 +12,7 @@ class ErrorAdapter<T> extends CallAdapter<Future<T>, Future<T>> {
       return await call();
     } on DioException catch (e) {
       final error = e.response?.data;
-      final message =
-          error['msg'] ??
-          error['message'] ??
-          error['error'] ??
-          error['error_msg'] ??
-          error['error_description'] ??
-          e.message;
+      final message = e.message ?? 'error';
       throw NetLibException(operation: 'API Call', message: message, cause: e);
     }
   }

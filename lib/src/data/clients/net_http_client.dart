@@ -1,3 +1,7 @@
+import 'dart:io';
+import 'dart:typed_data';
+import 'package:flutter/material.dart';
+
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -13,6 +17,34 @@ abstract class NetHttpClient implements AuthHttpClient {
   factory NetHttpClient(Dio dio, {String? baseUrl}) = _NetHttpClient;
 
   @override
-  @POST('/users/auth-with-password')
-  Future<AuthResponse> login(@Body() AuthRequest request);
+  @POST('/users/auth-with-password/{id}')
+  Future<void> login(@Path('id') String request);
+
+  @POST('/user/qwe')
+  @MultiPart()
+  Future<AuthResponse> postProfile(
+    //   через rootBundle как с llm
+    @Part(name: 'file') File file,
+    @Query('id') int id,
+  );
+
+  @GET('/user/qwe')
+  Future<Uint8List> getProfile(
+    @Query('id') int id,
+  );
+
+  @PUT('/user/qwe')
+  Future<UserResponse> updateProfile(
+    @Path('id') int id, @Body()
+      UserRegRequest request
+  );
+
+  @PUT('/user/qwe')
+  Future<UserResponse> queryProfile(
+    @Query('id') int? id,
+    @Query('qwe') int? qwe,
+    @Query('search') int? search,
+      @Body()
+      UserRegRequest request
+  );
 }

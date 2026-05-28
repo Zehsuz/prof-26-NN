@@ -1,4 +1,9 @@
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+
 import 'package:dio/dio.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:logging/logging.dart';
 import 'package:net_service/net_service.dart';
@@ -21,9 +26,9 @@ void main() {
   });
 
   test('login', () async {
-    final response = await _client.login(
-      .new(identity: 'qwe@qwe.qwe', password: 'qweqweqwe'),
-    );
-    expect(response, isA<AuthResponse>());
+    final qwe = Image.asset('asd');
+    final qweasd = File
+    await _client.postProfile(, id)
+    expect(() => _client.login('qwe'), returnsNormally);
   });
 }

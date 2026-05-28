@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'user.g.dart';
@@ -8,15 +9,19 @@ part 'user.g.dart';
 @JsonSerializable()
 class UserResponse {
   final String name;
-  final String? email;
-  final DateTime created;
-  final DateTime updated;
+  final String firstName;
+  final String lastName;
+  final String role;
+  final String? avatarUrl;
+  final String email;
 
   UserResponse({
     required this.name,
     required this.email,
-    required this.created,
-    required this.updated,
+    required this.firstName,
+    required this.lastName,
+    required this.role,
+    required this.avatarUrl,
   });
 
   /// метод десериализации ответа с сервера в модель, [Map] - ответ от сервера, возвращает [UserResponse]
@@ -32,10 +37,9 @@ class UserResponse {
 /// Создал: Захар
 @JsonSerializable()
 class AuthResponse {
-  final UserResponse record;
+  final UserResponse user;
   final String token;
-
-  AuthResponse({required this.record, required this.token});
+  AuthResponse({required this.user, required this.token});
 
   /// метод десериализации ответа с сервера в модель, [Map] - ответ от сервера, возвращает [AuthResponse]
 
@@ -51,10 +55,10 @@ class AuthResponse {
 /// Создал: Захар
 @JsonSerializable()
 class AuthRequest {
-  final String identity;
+  final String email;
   final String password;
 
-  AuthRequest({required this.identity, required this.password});
+  AuthRequest({required this.email, required this.password});
 
   /// метод десериализации ответа с сервера в модель, [Map] - ответ от сервера, возвращает [AuthRequest]
 
@@ -63,4 +67,30 @@ class AuthRequest {
 
   /// метод сериализации модели в словарь формата json, возвращает [Map]
   Map<String, dynamic> toJson() => _$AuthRequestToJson(this);
+}
+
+/// Назначение: модель авторизации пользователя
+/// Дата создания: 27.05.2026
+/// Создал: Захар
+@JsonSerializable()
+class UserRegRequest {
+  final String email;
+  final String password;
+  final String firstName;
+  final String lastName;
+
+  UserRegRequest({
+    required this.email,
+    required this.password,
+    required this.firstName,
+    required this.lastName,
+  });
+
+  /// метод десериализации ответа с сервера в модель, [Map] - ответ от сервера, возвращает [AuthRequest]
+
+  factory UserRegRequest.fromJson(Map<String, dynamic> json) =>
+      _$UserRegRequestFromJson(json);
+
+  /// метод сериализации модели в словарь формата json, возвращает [Map]
+  Map<String, dynamic> toJson() => _$UserRegRequestToJson(this);
 }

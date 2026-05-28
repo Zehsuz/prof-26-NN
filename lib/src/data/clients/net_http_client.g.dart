@@ -19,17 +19,53 @@ class _NetHttpClient implements NetHttpClient {
 
   final ParseErrorLogger? errorLogger;
 
-  Future<AuthResponse> _login(AuthRequest request) async {
+  Future<void> _login(String request) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(request.toJson());
-    final _options = _setStreamType<AuthResponse>(
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<void>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/users/auth-with-password',
+            '/users/auth-with-password/${request}',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    await _dio.fetch<void>(_options);
+  }
+
+  @override
+  Future<void> login(String request) {
+    return ErrorAdapter<void>().adapt(() => _login(request));
+  }
+
+  Future<AuthResponse> _postProfile(File file, int id) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'id': id};
+    final _headers = <String, dynamic>{};
+    final _data = FormData();
+    _data.files.add(
+      MapEntry(
+        'file',
+        MultipartFile.fromFileSync(
+          file.path,
+          filename: file.path.split(Platform.pathSeparator).last,
+        ),
+      ),
+    );
+    final _options = _setStreamType<AuthResponse>(
+      Options(
+            method: 'POST',
+            headers: _headers,
+            extra: _extra,
+            contentType: 'multipart/form-data',
+          )
+          .compose(
+            _dio.options,
+            '/user/qwe',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -47,8 +83,122 @@ class _NetHttpClient implements NetHttpClient {
   }
 
   @override
-  Future<AuthResponse> login(AuthRequest request) {
-    return ErrorAdapter<AuthResponse>().adapt(() => _login(request));
+  Future<AuthResponse> postProfile(File file, int id) {
+    return ErrorAdapter<AuthResponse>().adapt(() => _postProfile(file, id));
+  }
+
+  Future<Uint8List> _getProfile(int id) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'id': id};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<Uint8List>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/user/qwe',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Uint8List>(_options);
+    late Uint8List _value;
+    try {
+      _value = _result.data!;
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, response: _result);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<Uint8List> getProfile(int id) {
+    return ErrorAdapter<Uint8List>().adapt(() => _getProfile(id));
+  }
+
+  Future<UserResponse> _updateProfile(int id, UserRegRequest request) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(request.toJson());
+    final _options = _setStreamType<UserResponse>(
+      Options(method: 'PUT', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/user/qwe',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late UserResponse _value;
+    try {
+      _value = UserResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, response: _result);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<UserResponse> updateProfile(int id, UserRegRequest request) {
+    return ErrorAdapter<UserResponse>().adapt(
+      () => _updateProfile(id, request),
+    );
+  }
+
+  Future<UserResponse> _queryProfile(
+    int? id,
+    int? qwe,
+    int? search,
+    UserRegRequest request,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'id': id,
+      r'qwe': qwe,
+      r'search': search,
+    };
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(request.toJson());
+    final _options = _setStreamType<UserResponse>(
+      Options(method: 'PUT', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/user/qwe',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late UserResponse _value;
+    try {
+      _value = UserResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, response: _result);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<UserResponse> queryProfile(
+    int? id,
+    int? qwe,
+    int? search,
+    UserRegRequest request,
+  ) {
+    return ErrorAdapter<UserResponse>().adapt(
+      () => _queryProfile(id, qwe, search, request),
+    );
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {

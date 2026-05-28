@@ -4,5 +4,5 @@ import 'package:net_service/net_service.dart';
 /// Создал: Захар
 abstract interface class AuthHttpClient {
   /// авторизация [AuthRequest] - модель авторизации, возвращает [AuthResponse]
-  Future<AuthResponse> login(AuthRequest request);
+  Future<void> login(AuthRequest request);
 }
