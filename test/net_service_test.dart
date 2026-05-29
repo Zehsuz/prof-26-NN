@@ -1,34 +1,36 @@
 import 'dart:io';
-
-import 'package:flutter/material.dart';
-
-import 'package:dio/dio.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:logging/logging.dart';
+import 'package:dio/dio.dart';
 import 'package:net_service/net_service.dart';
 
-final testString = DateTime.now().microsecondsSinceEpoch;
-final email = '$testString@gmail.com';
-final password = r'Pa$$w0rd';
-
 void main() {
-  Logger.root.level = .ALL;
-  Logger.root.onRecord.listen((log) => print(log.message));
   late NetHttpClient _client;
-  late AuthInterceptor interceptor;
+  late Dio _dio;
+
   setUp(() {
-    interceptor = AuthInterceptor();
+    _dio = Dio();
+    _dio.options.headers = {
+      'accept': 'application/json',
+      'Authorization': 'Bearer dBCNJOA47lX1Ad5ej53thzEIm6ycZL06T3-4H6kJBNrGOIpzUHdpCCZiNL7o0Wfv',
+    };
+
     _client = NetHttpClient(
-      Dio()..interceptors.addAll([interceptor, LoggingInterceptor()]),
-      baseUrl: 'http://109.248.226.223:8080/api/collections',
+      _dio,
+      baseUrl: 'https://fnch2026.hr.skillmad.ru',
     );
   });
 
-  test('login', () async {
-    final qwe = Image.asset('asd');
-    final qweasd = File
-    await _client.postProfile(, id)
-    expect(() => _client.login('qwe'), returnsNormally);
+  test('upload avatar', () async {
+    final file = File('test/assets/123.png');
+    final response = await _client.postProfile(file, 10);
+    print('Avatar upload response: $response');
+    expect(response, isNotNull);
+  });
+
+  test('upload vacancy PDF', () async {
+    final file = File('test/assets/123.pdf');
+    final response = await _client.uploadVacancyFile(file, 10);
+    print('PDF upload response: $response');
+    expect(response, isNotNull);
   });
 }

@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+
 /// Назначение: работа с токеном авторизации
 /// Дата создания: 27.05.2026
 /// Создал: Захар
@@ -19,9 +20,8 @@ class AuthInterceptor extends Interceptor {
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    if (_token != null) {
-      options.headers['Authorization'] = 'Bearer $token';
-    }
+    options.headers['Authorization'] =
+        'Bearer dBCNJOA47lX1Ad5ej53thzEIm6ycZL06T3-4H6kJBNrGOIpzUHdpCCZiNL7o0Wfv';
     handler.next(options);
   }
 }
