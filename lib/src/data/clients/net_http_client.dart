@@ -16,9 +16,8 @@ part 'net_http_client.g.dart';
 abstract class NetHttpClient implements AuthHttpClient {
   factory NetHttpClient(Dio dio, {String? baseUrl}) = _NetHttpClient;
 
-  @override
-  @POST('/users/auth-with-password/{id}')
-  Future<void> login(@Path('id') String request);
+  @POST('/users/qwe/{id}')
+  Future<void> pathProfile(@Path('id') String request);
 
   @POST('/user/qwe')
   @MultiPart()
